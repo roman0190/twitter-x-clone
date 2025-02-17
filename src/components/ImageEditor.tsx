@@ -47,7 +47,7 @@ const ImageEditor = ({
           </button>
         </div>
         {/* IMAGE CONTAINER */}
-        <div className="w-[600px] h-[600px] flex items-center">
+        <div className="lg:w-[600px] lg:h-[600px] flex items-center">
           <Image
             src={previewURL}
             alt="alt"
@@ -63,7 +63,7 @@ const ImageEditor = ({
           />
         </div>
         {/* SETTINGS */}
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-sm md:gap-0 gap-10">
           <div className="flex items-center gap-8">
             <div
               className="flex items-center gap-2 cursor-pointer"

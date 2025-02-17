@@ -57,7 +57,7 @@ const Post = async () => {
             <div className="flex items-center flex-wrap gap-2">
               <h1 className="text-md font-bold">Roman Howladar</h1>
               <span className="text-textGray">@roman841</span>
-              <span className="text-textGray">1 Day ago</span>
+              <span className="text-textGray">• 1 Day ago</span>
             </div>
             <PostInfo />
           </div>
