@@ -80,12 +80,7 @@ const LeftBar = () => {
               key={menu.id}
               className="p-2 rounded-full hover:bg-[#181818] flex items-center gap-4"
             >
-              <Image
-                path={`icons/${menu.icon}`}
-                alt="alt"
-                w={24}
-                h={24}
-              />
+              <Image path={`icons/${menu.icon}`} alt="alt" w={24} h={24} />
               <span className="hidden xxl:inline">{menu.name}</span>
             </Link>
           ))}
@@ -106,15 +101,24 @@ const LeftBar = () => {
       </div>
       {/* USER */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 relative rounded-full overflow-hidden">
-            <Image path="/general/avatar.png" alt="alt" w={100} h={100} tr={true} className="object-cover" />
+        <Link href={"/roman841"}>
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 relative rounded-full overflow-hidden">
+              <Image
+                path="/general/avatar.png"
+                alt="alt"
+                w={100}
+                h={100}
+                tr={true}
+                className="object-cover"
+              />
+            </div>
+            <div className="hidden xxl:flex flex-col">
+              <span className="font-bold cursor-pointer">Roman Howladar</span>
+              <span className="text-sm text-textGray">@roman841</span>
+            </div>
           </div>
-          <div className="hidden xxl:flex flex-col">
-            <span className="font-bold">Roman Howladar</span>
-            <span className="text-sm text-textGray">@roman841</span>
-          </div>
-        </div>
+        </Link>
         <div className="hidden xxl:block cursor-pointer font-[1000] ">...</div>
       </div>
     </div>
