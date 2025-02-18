@@ -62,8 +62,7 @@ const UserPage = () => {
           </div>
           {/* BIO */}
           <p>
-            Yesterday is history Tomorrow is a mystery but today is a gift
-            that's why it's called present.
+            Yesterday is history Tomorrow is a mystery.
           </p>
           {/* JOB & LOCATION & DATE */}
           <div className="flex gap-4 text-textGray text-[15px]">
