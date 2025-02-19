@@ -5,7 +5,8 @@ import PostInteractions from "./PostInteractions";
 import { imagekit } from "@/app/utils/imagekitUlits";
 import Video from "./Video";
 import { FileDetailsType } from "@/app/lib/types/FileDetailsType";
-const Post = async () => {
+import Link from "next/link";
+const Post = async ({ type }: { type?: "status" | "comment" }) => {
   const getFileDetails = async (FileId: string): Promise<FileDetailsType> => {
     return new Promise((resolve, reject) => {
       imagekit.getFileDetails(FileId, function (error, result) {
@@ -38,9 +39,13 @@ const Post = async () => {
         <span>Roman reposted</span>
       </div>
       {/* CONTENT SECTION */}
-      <div className="flex gap-4">
+      <div className={`flex gap-4 ${type === "status" && "flex-col"}`}>
         {/* AVATAR */}
-        <div className="relative w-10 h-10 rounded-full overflow-hidden">
+        <div
+          className={`relative w-10 h-10 rounded-full overflow-hidden ${
+            type === "status" && "hidden"
+          }`}
+        >
           <Image
             path="/general/avatar.png"
             alt="alt"
@@ -52,22 +57,51 @@ const Post = async () => {
         </div>
         {/* CONTENT */}
         <div className="flex flex-col flex-1 gap-2">
-          {/* TOP */}
-          <div className=" flex items-center justify-between gap-2">
-            <div className="flex items-center flex-wrap gap-2">
-              <h1 className="text-md font-bold">Roman Howladar</h1>
-              <span className="text-textGray">@roman841</span>
-              <span className="text-textGray">• 1 Day ago</span>
-            </div>
+          <div className="w-full flex justify-between">
+            {/* TOP */}
+            <Link href={"/roman841"} className="flex gap-2">
+              {/* AVATAR */}
+              <div
+                className={`relative w-10 h-10 rounded-full overflow-hidden ${
+                  type !== "status" && "hidden"
+                }`}
+              >
+                <Image
+                  path="/general/avatar.png"
+                  alt="alt"
+                  w={100}
+                  h={100}
+                  tr={true}
+                  className="object-cover"
+                />
+              </div>
+              <div
+                className={`flex items-center flex-wrap gap-2 ${
+                  type === "status" && "flex-col gap-0 !items-start"
+                }`}
+              >
+                <h1 className="text-md font-bold">Roman Howladar</h1>
+                <span
+                  className={`text-textGray ${type === "status" && "text-sm"}`}
+                >
+                  @roman841
+                </span>
+                {type !== "status" && (
+                  <span className="text-textGray">• 1 Day ago</span>
+                )}
+              </div>
+            </Link>
             <PostInfo />
           </div>
           {/* TEXT & MEDIA */}
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
-            saepe nam laboriosam totam, magni labore molestias ducimus
-            cupiditate aspernatur temporibus voluptas voluptatum sequi iusto
-            magnam provident reiciendis illum dolorum error.
-          </p>
+          <Link href={"/roman841/status/112"}>
+            <p className={`${type === "status" && "text-lg"}`}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+              saepe nam laboriosam totam, magni labore molestias ducimus
+              cupiditate aspernatur temporibus voluptas voluptatum sequi iusto
+              magnam provident reiciendis illum dolorum error.
+            </p>
+          </Link>
           {fileDetails && fileDetails.fileType === "image" ? (
             <Image
               path={fileDetails.filePath}
@@ -81,6 +115,9 @@ const Post = async () => {
               path={fileDetails.filePath}
               className={fileDetails.customMetadata?.sensitive ? "blur-lg" : ""}
             />
+          )}
+          {type === "status" && (
+            <span className="text-textGray">1 Day ago</span>
           )}
           <PostInteractions />
         </div>
